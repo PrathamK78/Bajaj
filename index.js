@@ -16,7 +16,7 @@ const evenArr = arr.filter(item => item % 2 === 0);
 
 
 
-const resp = {
+const response = {
     is_success: true,
     user_id: user,
     email:"pratham1054.be21@chitkara.edu.in",
@@ -26,7 +26,7 @@ const resp = {
     alphabets_uppercase: alphabets
 };
 
-res.json(resp);
+res.json(response);
 });
 
 app.listen(port, () => {
