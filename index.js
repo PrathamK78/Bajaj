@@ -1,118 +1,35 @@
-
-// Import required modules
-const express = require('express')
-// Initialize Express app
+const express = require("express");
 const app = express();
-
-// Middleware for parsing JSON bodies
+const port = 3000;
+const cors = require("cors");
+app.use(cors());
 app.use(express.json());
 
-// POST route for /bfhl
-app.post('/bfhl', (req, res) => {
-    try {
-        // Extract data from the request body
-        const { array, user_id, email_id, college_roll_number } = req.body;
+app.post("/bfhl", (req, res) => {
+  const arr = req.body.data;
+  console.log(arr);
 
-        // Initialize arrays for even, odd numbers, and uppercase alphabets
-        const evenNumbers = [];
-        const oddNumbers = [];
-        const uppercaseAlphabets = [];
+  const user = "abhiraj_singh_chatrath_21052003";
 
-        // Iterate through the input array
-        array.forEach((element) => {
-            if (typeof element === 'number') {
-                if (element % 2 === 0) {
-                    evenNumbers.push(element);
-                } else {
-                    oddNumbers.push(element);
-                }
-            } else if (typeof element === 'string' && /^[A-Za-z]$/.test(element)) {
-                uppercaseAlphabets.push(element.toUpperCase());
-            }
-        });
+  const alphabets = arr
+    .filter((ch) => /[a-zA-Z]/.test(ch))
+    .map((ch) => ch.toUpperCase());
+  const oddArr = arr.filter((item) => item % 2 !== 0);
+  const evenArr = arr.filter((item) => item % 2 === 0);
 
-        // Construct response object
-        const response = {
-            user_id: user_id.replace(/ /g, '_'),
-            is_success: true,
-            email_id,
-            college_roll_number,
-            even_numbers: evenNumbers,
-            odd_numbers: oddNumbers,
-            uppercase_alphabets: uppercaseAlphabets
-        };
+  const resp = {
+    is_success: true,
+    user_id: user,
+    email: "abhiraj0057.be21@chitkara.edu.in",
+    roll_no: "2110990057",
+    even_numbers: evenArr,
+    odd_numbers: oddArr,
+    alphabets_uppercase: alphabets,
+  };
 
-        // Send response
-        res.status(200).json(response);
-    } catch (error) {
-        // Handle exceptions gracefully
-        console.error(error);
-        res.status(500).json({ is_success: false, error: 'Internal server error' });
-    }
+  res.json(resp);
 });
 
-// Start the server
-const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => {
-    console.log(`Server is running on port ${PORT}`);
+app.listen(port, () => {
+  console.log(`Server running on port ${port}`);
 });
-
-
-// Import required modules
-const express = require('express')
-// Initialize Express app
-const app = express();
-
-// Middleware for parsing JSON bodies
-app.use(express.json());
-
-// POST route for /bfhl
-app.post('/bfhl', (req, res) => {
-    try {
-        // Extract data from the request body
-        const { array, user_id, email_id, college_roll_number } = req.body;
-
-        // Initialize arrays for even, odd numbers, and uppercase alphabets
-        const evenNumbers = [];
-        const oddNumbers = [];
-        const uppercaseAlphabets = [];
-
-        // Iterate through the input array
-        array.forEach((element) => {
-            if (typeof element === 'number') {
-                if (element % 2 === 0) {
-                    evenNumbers.push(element);
-                } else {
-                    oddNumbers.push(element);
-                }
-            } else if (typeof element === 'string' && /^[A-Za-z]$/.test(element)) {
-                uppercaseAlphabets.push(element.toUpperCase());
-            }
-        });
-
-        // Construct response object
-        const response = {
-            user_id: user_id.replace(/ /g, '_'),
-            is_success: true,
-            email_id,
-            college_roll_number,
-            even_numbers: evenNumbers,
-            odd_numbers: oddNumbers,
-            uppercase_alphabets: uppercaseAlphabets
-        };
-
-        // Send response
-        res.status(200).json(response);
-    } catch (error) {
-        // Handle exceptions gracefully
-        console.error(error);
-        res.status(500).json({ is_success: false, error: 'Internal server error' });
-    }
-});
-
-// Start the server
-const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => {
-    console.log(`Server is running on port ${PORT}`);
-});
-// });
