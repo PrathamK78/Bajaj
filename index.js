@@ -9,7 +9,7 @@ app.post("/bfhl", (req, res) => {
   const arr = req.body.data;
   console.log(arr);
 
-  const user = "abhiraj_singh_chatrath_21052003";
+  const user = "pratham_kapoor_19062003";
 
   const alphabets = arr
     .filter((ch) => /[a-zA-Z]/.test(ch))
@@ -20,8 +20,8 @@ app.post("/bfhl", (req, res) => {
   const resp = {
     is_success: true,
     user_id: user,
-    email: "abhiraj0057.be21@chitkara.edu.in",
-    roll_no: "2110990057",
+    email: "pratham1054.be21@chitkara.edu.in",
+    roll_no: "2110991054",
     even_numbers: evenArr,
     odd_numbers: oddArr,
     alphabets_uppercase: alphabets,
